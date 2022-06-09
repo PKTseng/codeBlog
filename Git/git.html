@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Git 基本操作 | 程式筆記</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="回憶記事本">
+    
+    <link rel="preload" href="/codeBlog/assets/css/0.styles.1472e79c.css" as="style"><link rel="preload" href="/codeBlog/assets/js/app.6eda6764.js" as="script"><link rel="preload" href="/codeBlog/assets/js/2.75f0d916.js" as="script"><link rel="preload" href="/codeBlog/assets/js/7.e941329e.js" as="script"><link rel="prefetch" href="/codeBlog/assets/js/10.a79cb251.js"><link rel="prefetch" href="/codeBlog/assets/js/11.f127affd.js"><link rel="prefetch" href="/codeBlog/assets/js/12.3867c048.js"><link rel="prefetch" href="/codeBlog/assets/js/13.3dcc420b.js"><link rel="prefetch" href="/codeBlog/assets/js/14.92d97ccf.js"><link rel="prefetch" href="/codeBlog/assets/js/15.e79dd262.js"><link rel="prefetch" href="/codeBlog/assets/js/16.9d411bf1.js"><link rel="prefetch" href="/codeBlog/assets/js/17.d190dc54.js"><link rel="prefetch" href="/codeBlog/assets/js/18.958ab0fd.js"><link rel="prefetch" href="/codeBlog/assets/js/19.83d59d16.js"><link rel="prefetch" href="/codeBlog/assets/js/20.942328af.js"><link rel="prefetch" href="/codeBlog/assets/js/21.922d1b0c.js"><link rel="prefetch" href="/codeBlog/assets/js/22.be3d81b7.js"><link rel="prefetch" href="/codeBlog/assets/js/23.c9a38340.js"><link rel="prefetch" href="/codeBlog/assets/js/24.3ab3fe48.js"><link rel="prefetch" href="/codeBlog/assets/js/25.7e31987b.js"><link rel="prefetch" href="/codeBlog/assets/js/26.fdf18423.js"><link rel="prefetch" href="/codeBlog/assets/js/3.431e60c5.js"><link rel="prefetch" href="/codeBlog/assets/js/4.f7eaa31b.js"><link rel="prefetch" href="/codeBlog/assets/js/5.58dc1d1e.js"><link rel="prefetch" href="/codeBlog/assets/js/6.6e41bdef.js"><link rel="prefetch" href="/codeBlog/assets/js/8.36f3de2c.js"><link rel="prefetch" href="/codeBlog/assets/js/9.bf5f78de.js">
+    <link rel="stylesheet" href="/codeBlog/assets/css/0.styles.1472e79c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/codeBlog/" class="home-link router-link-active"><!----> <span class="site-name">程式筆記</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/PKTseng" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/PKTseng" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/codeBlog/" aria-current="page" class="sidebar-link">About Me</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Vue 2</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/vue/Vue2LifeCycle.html" class="sidebar-link">Vue 2 生命週期</a></li><li><a href="/codeBlog/vue/Vue2Reactivity.html" class="sidebar-link">Vue 2 的響應式</a></li><li><a href="/codeBlog/vue/Slot.html" class="sidebar-link">Vue 插槽 ( Slot )</a></li><li><a href="/codeBlog/vue/emit&amp;props.html" class="sidebar-link">emit 與 props </a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Vue 3</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/vue/Vue3LifeCycle.html" class="sidebar-link">Vue 3 生命週期</a></li><li><a href="/codeBlog/vue/Vue3Computed.html" class="sidebar-link">Vue 3 的計算屬性</a></li><li><a href="/codeBlog/vue/Vue3Watch.html" class="sidebar-link">Vue 3 的監視屬性</a></li><li><a href="/codeBlog/vue/watch-ref-value.html" class="sidebar-link">Vue 3 監視 ( watch ) ref 定義的變數</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>JavaScript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/JavaScript/Cookie&amp;LocalStorage&amp;SessionStorage.html" class="sidebar-link">Cookie、LocalStorage、SessionStorage 三者差別</a></li><li><a href="/codeBlog/JavaScript/var&amp;let&amp;const.html" class="sidebar-link">var &amp; let &amp; const 的差別</a></li><li><a href="/codeBlog/JavaScript/Hoisting.html" class="sidebar-link">Hoisting 提升</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>TypeScript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/TypeScript/TypeScript_Setup.html" class="sidebar-link">設定 TypeScript 開發環境</a></li><li><a href="/codeBlog/TypeScript/TypeScript_info_1.html" class="sidebar-link">TypeScript 型別介紹（１）</a></li><li><a href="/codeBlog/TypeScript/TypeScript_info_2.html" class="sidebar-link">TypeScript 型別介紹（2）</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>資料結構與演算法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/TypeScript/TypeScript_Setup.html" class="sidebar-link">設定 TypeScript 開發環境</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Git</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/Git/git.html" aria-current="page" class="active sidebar-link">Git 基本操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#簡介" class="sidebar-link">簡介</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#git-指令" class="sidebar-link">Git 指令</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#安裝" class="sidebar-link">安裝</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#初始化" class="sidebar-link">初始化</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#加入索引" class="sidebar-link">加入索引</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#提交" class="sidebar-link">提交</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#建立遠端儲存庫" class="sidebar-link">建立遠端儲存庫</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#推送至遠端數據庫" class="sidebar-link">推送至遠端數據庫</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#製造分支" class="sidebar-link">製造分支</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#合併分支" class="sidebar-link">合併分支</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Git/git.html#參考資料" class="sidebar-link">參考資料</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Other</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/Other/chocolatey.html" class="sidebar-link">安裝 chocolatey 套件管理工具</a></li><li><a href="/codeBlog/Other/WSL.html" class="sidebar-link">在 Windows 上安裝 WSL1</a></li><li><a href="/codeBlog/Other/CommandLine.html" class="sidebar-link">Command Line 常用指令有哪些</a></li><li><a href="/codeBlog/Other/Owasp.html" class="sidebar-link">OWASP ZAP</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="git-基本操作"><a href="#git-基本操作" class="header-anchor">#</a> Git 基本操作</h1> <h2 id="簡介"><a href="#簡介" class="header-anchor">#</a> 簡介</h2> <p>Git 是一個可控制程式碼版本的工具
+當我們在開發的時候為了不影響線上的產品，就會先開一個分支出來在分支上做開發，這樣既可以大膽的開發也不怕會影響到線上正在運行的版本，同時又做到程式碼的控管，是一個很方便的工具</p> <h2 id="git-指令"><a href="#git-指令" class="header-anchor">#</a> Git 指令</h2> <p>Git 有分幾個簡單寫常用的幾個指令
+<code>git init</code>: 在我們 local 端建立數據庫
+<code>git add .</code>: 加入索引
+<code>git commit -m</code>: 將目前加入索引的資料提交出去
+<code>git push origin</code>: 推送到遠端數據庫
+<code>git pull</code>: 從遠端數據庫拉取最新的版本
+<code>git branch</code>: 查看分支
+<code>git checkout</code>: 切換到該分支
+<code>git log</code>: 查看 git 歷史紀錄
+<code>git status</code>: 查看目前資料狀態
+<code>git merge</code>: 合併分支</p> <p>工作上常用的大概是以上這幾種</p> <hr> <h2 id="安裝"><a href="#安裝" class="header-anchor">#</a> 安裝</h2> <p>OS: window
+首先到 <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git 官網<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>下載 Git
+<img src="https://i.imgur.com/A0KD6ji.png" alt=""></p> <p>或是用 chcoclatey 安裝也可以 ，輸入<code>choco install git</code></p> <p>初次安裝的話會需要設定使用者名稱跟密碼</p> <h2 id="初始化"><a href="#初始化" class="header-anchor">#</a> 初始化</h2> <p>安裝完成後在桌面建立資料夾，並簡單新增檔案，然後再對資料夾案右鍵，選取 Git Bash Here
+<img src="https://i.imgur.com/Tga7KCl.png" alt="">
+會出現 Bash 視窗
+<img src="https://i.imgur.com/Ae4RKtN.png" alt="">
+這樣就初始化完成了</p> <h2 id="加入索引"><a href="#加入索引" class="header-anchor">#</a> 加入索引</h2> <p>接下來就可以開發了</p> <p>本來是檔案內容是空的，現在加入一點基本資料，然後要將這資料加入索引
+當我們新增或是更改完成時就要將資料新增到索引，同時放到一個暫存區裡面
+因為 VScode 有內建 <code>git add</code> ，就是下圖紅框處，如果有更改某檔案的資料，在 changes 就會有紀錄，首先左邊選單選到 Source control 會看到有檔案變更，點擊紅框的 + 號，要加入索引就把滑鼠移至紅框，會出現 + 號，點擊就 add 了
+<img src="https://i.imgur.com/FeAhBnc.png" alt=""></p> <p>add 新增索引後，如下圖
+<img src="https://i.imgur.com/7AHm6f6.png" alt=""></p> <h2 id="提交"><a href="#提交" class="header-anchor">#</a> 提交</h2> <p>當確定好更改的檔案並加入索引後，我們要 commit ，把暫存區裡面的資料丟到儲存庫裡面
+通常 commit 後面都會接此次更改的資訊，寫法如下
+<code>git commit -m &quot;add index.html&quot;</code>，要記得空格跟加雙引號
+<img src="https://i.imgur.com/qQ0nwuq.png" alt=""></p> <p>然後推送至遠端數據庫</p> <h2 id="建立遠端儲存庫"><a href="#建立遠端儲存庫" class="header-anchor">#</a> 建立遠端儲存庫</h2> <p>在推送至遠端數據庫之前，要先在遠端建立遠端數據庫，那這會用到 Github ，
+如果沒有 Github 要先辦一下
+登入後看到右上角有個 + 號，點擊候選取 <code>New repository</code> <img src="https://i.imgur.com/TF4JMgd.png" alt="">
+會出現以下畫面，然後再紅框處輸入遠端數據庫的名稱，這邊用 test1 示範，然後點擊下面的
+Create repository
+<img src="https://i.imgur.com/rEvAKi8.png" alt=""></p> <p>接著會顯示以下畫面
+<img src="https://i.imgur.com/vqMTP0o.png" alt=""></p> <h2 id="推送至遠端數據庫"><a href="#推送至遠端數據庫" class="header-anchor">#</a> 推送至遠端數據庫</h2> <p>當我們把資料都丟到數據庫後，接下來要將新增或是修改的檔案推送到遠端數據庫中
+<code>git push origin test</code> ，意思是將 test 這個分之 push 到遠端的數據庫中
+因為我剛剛已經 init、add、commit 了，所以現在就直接 push，點選右邊紅框的複製紐
+直接貼上
+<img src="https://i.imgur.com/zS5tHdk.png" alt=""></p> <p>用 <code>git log</code> 指令確認一下狀態
+<img src="https://i.imgur.com/9HjeMar.png" alt=""></p> <p>在回到 Github 在刷新一次頁面，確認一下
+<img src="https://i.imgur.com/1ZPugtq.png" alt=""></p> <p>這樣不管是 loacal 或是 remote，前置作業就算是完成了</p> <h2 id="製造分支"><a href="#製造分支" class="header-anchor">#</a> 製造分支</h2> <p>接下來我們可以試著用分支開發
+造分支有兩種方法:</p> <ol><li><p><code>git checkout -b 分支名稱</code>: 這方法比較直接，輸入完直接造分支同時切到該分支上
+<img src="https://i.imgur.com/1QXhPuf.png" alt=""></p></li> <li><p><code>git branch 分支名稱</code>: 這方法會造分支但不會切換到該分支，必須再下 <code>git checkout 分支名稱</code> 才會切過去，以下示範
+我先用 <code>branch</code> 創造分支 <code>dev2</code> ，然後再確認目前在哪個分支上
+(<strong>亮綠色有星號的就是在該分支上</strong>)
+但因為我創的是 <code>dev2</code> ，所以還沒轉過去，要用 <code>checkout</code> 才可以切換過去
+<img src="https://i.imgur.com/XZGOfc8.png" alt=""></p></li></ol> <h2 id="合併分支"><a href="#合併分支" class="header-anchor">#</a> 合併分支</h2> <p>接下來流程跟上面步驟一樣</p> <ol><li>建立索引 add 或是 按 +</li> <li>提交至儲存庫<code>git commit</code></li> <li>推送至遠端</li></ol> <hr> <h3 id="實際操作"><a href="#實際操作" class="header-anchor">#</a> 實際操作:</h3> <ol><li>確認在哪個分之</li> <li>在分支上新增 <code>h2</code> 內容，並加入索引</li> <li>用 <code>git status</code> 確認目前更改的檔案有哪些</li></ol> <p>如下圖
+<img src="https://i.imgur.com/oz44dB5.png" alt=""></p> <p>提交到儲存庫後，左邊的暫存檔就會不見
+<img src="https://i.imgur.com/WiXB10q.png" alt=""></p> <p>再示範一次，新增 h3 內容
+我們可以點擊更改的檔案查看哪邊有高亮，有代表變更的地方
+<img src="https://i.imgur.com/q086OIx.png" alt=""></p> <p>提交後。高亮就會不見
+<img src="https://i.imgur.com/OfQeK2n.png" alt=""></p> <p>再推送到遠端
+<code>git push origin 分支名稱</code> <img src="https://i.imgur.com/KcZ8GBP.png" alt=""></p> <p>到遠端切換到分支上查看，確實有剛新增的內容
+<img src="https://i.imgur.com/Zco4gdf.png" alt=""></p> <h3 id="接下來要合併了"><a href="#接下來要合併了" class="header-anchor">#</a> 接下來要合併了</h3> <p><strong>切回 主支( main )</strong> <img src="https://i.imgur.com/BrJ6tEq.png" alt=""></p> <p>可以看到沒有 h2、h3 的內容
+但再切回 dev1 分支查看是有的
+<img src="https://i.imgur.com/efIhab5.png" alt=""></p> <p>合併時我們要先切到要被合併的那個分支上，可以用 <code>git branch</code> 確認高亮跟星號在哪，如下圖
+<img src="https://i.imgur.com/cvzd86T.png" alt=""> <code>merge</code> 完後 dev1 的內容就會被新增到主支(main)上，然後就可以繼續做開發了</p> <hr> <h2 id="參考資料"><a href="#參考資料" class="header-anchor">#</a> 參考資料</h2> <p><a href="https://gitbook.tw/chapters/using-git/add-to-git.html" target="_blank" rel="noopener noreferrer">把檔案交給 Git 控管<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/codeBlog/TypeScript/TypeScript_Setup.html" class="prev">
+        設定 TypeScript 開發環境
+      </a></span> <span class="next"><a href="/codeBlog/Other/chocolatey.html">
+        安裝 chocolatey 套件管理工具
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/codeBlog/assets/js/app.6eda6764.js" defer></script><script src="/codeBlog/assets/js/2.75f0d916.js" defer></script><script src="/codeBlog/assets/js/7.e941329e.js" defer></script>
+  </body>
+</html>

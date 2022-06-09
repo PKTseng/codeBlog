@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OWASP ZAP | 程式筆記</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="回憶記事本">
+    
+    <link rel="preload" href="/codeBlog/assets/css/0.styles.1472e79c.css" as="style"><link rel="preload" href="/codeBlog/assets/js/app.6eda6764.js" as="script"><link rel="preload" href="/codeBlog/assets/js/2.75f0d916.js" as="script"><link rel="preload" href="/codeBlog/assets/js/12.3867c048.js" as="script"><link rel="prefetch" href="/codeBlog/assets/js/10.a79cb251.js"><link rel="prefetch" href="/codeBlog/assets/js/11.f127affd.js"><link rel="prefetch" href="/codeBlog/assets/js/13.3dcc420b.js"><link rel="prefetch" href="/codeBlog/assets/js/14.92d97ccf.js"><link rel="prefetch" href="/codeBlog/assets/js/15.e79dd262.js"><link rel="prefetch" href="/codeBlog/assets/js/16.9d411bf1.js"><link rel="prefetch" href="/codeBlog/assets/js/17.d190dc54.js"><link rel="prefetch" href="/codeBlog/assets/js/18.958ab0fd.js"><link rel="prefetch" href="/codeBlog/assets/js/19.83d59d16.js"><link rel="prefetch" href="/codeBlog/assets/js/20.942328af.js"><link rel="prefetch" href="/codeBlog/assets/js/21.922d1b0c.js"><link rel="prefetch" href="/codeBlog/assets/js/22.be3d81b7.js"><link rel="prefetch" href="/codeBlog/assets/js/23.c9a38340.js"><link rel="prefetch" href="/codeBlog/assets/js/24.3ab3fe48.js"><link rel="prefetch" href="/codeBlog/assets/js/25.7e31987b.js"><link rel="prefetch" href="/codeBlog/assets/js/26.fdf18423.js"><link rel="prefetch" href="/codeBlog/assets/js/3.431e60c5.js"><link rel="prefetch" href="/codeBlog/assets/js/4.f7eaa31b.js"><link rel="prefetch" href="/codeBlog/assets/js/5.58dc1d1e.js"><link rel="prefetch" href="/codeBlog/assets/js/6.6e41bdef.js"><link rel="prefetch" href="/codeBlog/assets/js/7.e941329e.js"><link rel="prefetch" href="/codeBlog/assets/js/8.36f3de2c.js"><link rel="prefetch" href="/codeBlog/assets/js/9.bf5f78de.js">
+    <link rel="stylesheet" href="/codeBlog/assets/css/0.styles.1472e79c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/codeBlog/" class="home-link router-link-active"><!----> <span class="site-name">程式筆記</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/PKTseng" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/PKTseng" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/codeBlog/" aria-current="page" class="sidebar-link">About Me</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Vue 2</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/vue/Vue2LifeCycle.html" class="sidebar-link">Vue 2 生命週期</a></li><li><a href="/codeBlog/vue/Vue2Reactivity.html" class="sidebar-link">Vue 2 的響應式</a></li><li><a href="/codeBlog/vue/Slot.html" class="sidebar-link">Vue 插槽 ( Slot )</a></li><li><a href="/codeBlog/vue/emit&amp;props.html" class="sidebar-link">emit 與 props </a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Vue 3</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/vue/Vue3LifeCycle.html" class="sidebar-link">Vue 3 生命週期</a></li><li><a href="/codeBlog/vue/Vue3Computed.html" class="sidebar-link">Vue 3 的計算屬性</a></li><li><a href="/codeBlog/vue/Vue3Watch.html" class="sidebar-link">Vue 3 的監視屬性</a></li><li><a href="/codeBlog/vue/watch-ref-value.html" class="sidebar-link">Vue 3 監視 ( watch ) ref 定義的變數</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>JavaScript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/JavaScript/Cookie&amp;LocalStorage&amp;SessionStorage.html" class="sidebar-link">Cookie、LocalStorage、SessionStorage 三者差別</a></li><li><a href="/codeBlog/JavaScript/var&amp;let&amp;const.html" class="sidebar-link">var &amp; let &amp; const 的差別</a></li><li><a href="/codeBlog/JavaScript/Hoisting.html" class="sidebar-link">Hoisting 提升</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>TypeScript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/TypeScript/TypeScript_Setup.html" class="sidebar-link">設定 TypeScript 開發環境</a></li><li><a href="/codeBlog/TypeScript/TypeScript_info_1.html" class="sidebar-link">TypeScript 型別介紹（１）</a></li><li><a href="/codeBlog/TypeScript/TypeScript_info_2.html" class="sidebar-link">TypeScript 型別介紹（2）</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>資料結構與演算法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/TypeScript/TypeScript_Setup.html" class="sidebar-link">設定 TypeScript 開發環境</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Git</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/Git/git.html" class="sidebar-link">Git 基本操作</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Other</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeBlog/Other/chocolatey.html" class="sidebar-link">安裝 chocolatey 套件管理工具</a></li><li><a href="/codeBlog/Other/WSL.html" class="sidebar-link">在 Windows 上安裝 WSL1</a></li><li><a href="/codeBlog/Other/CommandLine.html" class="sidebar-link">Command Line 常用指令有哪些</a></li><li><a href="/codeBlog/Other/Owasp.html" aria-current="page" class="active sidebar-link">OWASP ZAP</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/codeBlog/Other/Owasp.html#zap-網頁滲透工具" class="sidebar-link">ZAP 網頁滲透工具</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Other/Owasp.html#docker-zap-測試" class="sidebar-link">Docker ZAP 測試</a></li><li class="sidebar-sub-header"><a href="/codeBlog/Other/Owasp.html#參考資料" class="sidebar-link">參考資料</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="owasp-zap"><a href="#owasp-zap" class="header-anchor">#</a> OWASP ZAP</h1> <h2 id="zap-網頁滲透工具"><a href="#zap-網頁滲透工具" class="header-anchor">#</a> ZAP 網頁滲透工具</h2> <p>ZAP 測試分兩種方法: GUI、docker
+到官網下載 <a href="https://www.zaproxy.org/download/" target="_blank" rel="noopener noreferrer">Cross Platform Package<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 測試程式(此版本為 2.9.0)</p> <h3 id="gui-介面測試"><a href="#gui-介面測試" class="header-anchor">#</a> GUI 介面測試</h3> <p>開啟 GUI 前要先安裝 <a href="https://www.oracle.com/tw/java/technologies/javase/javase-jdk8-downloads.html" target="_blank" rel="noopener noreferrer">jdk-8u271-windows-x64<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，否則無法開啟，</p> <p>安裝好後將 Cross Platform Package 的資料夾內 ZAP_2.9.0 檔開啟
+<img src="https://i.imgur.com/stovEwL.png" alt=""> <img src="https://i.imgur.com/Al98tGQ.png" alt=""></p> <p>第一次開啟會問是否要將 session 存起來
+<img src="https://i.imgur.com/a8c3i5z.png" alt=""> <a href="https://ephrain.net/pentest-%E7%94%A8-owasp-zap-%E5%81%9A%E6%BB%B2%E9%80%8F%E6%B8%AC%E8%A9%A6%EF%BC%8C%E6%89%BE%E5%B0%8B%E7%B6%B2%E7%AB%99%E5%8F%AF%E8%83%BD%E7%9A%84%E5%BC%B1%E9%BB%9E/" target="_blank" rel="noopener noreferrer">圖片來源: EPH 的程式日記<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>開啟後要先設定測試 report 的儲存位置
+<img src="https://i.imgur.com/8vATO4o.png" alt=""></p> <p>這裡示範在桌面創建資料(report)夾並將檔名命名為 test
+<img src="https://i.imgur.com/Zeryray.png" alt=""></p> <p>設定 ok 後，按下 Save</p> <p>接下來左上角可以設定測試模式(這邊選用標準模式示範)，右邊視窗選擇掃描模式(這邊用自動掃描)
+<img src="https://i.imgur.com/jRxM6uQ.png" alt=""></p> <p>選擇自動掃描後，在將要測試的網址寫入
+<img src="https://i.imgur.com/Huy00LV.png" alt=""></p> <p>按下 Attack ，下面區塊就開始掃描了
+<img src="https://i.imgur.com/8y0o0eP.png" alt=""></p> <p>測試完成，左邊旗子的顏色就是威脅的等級，以下測出我們有一個中威脅跟三個低威脅
+(威脅等級分成高中低還有訊息，高威脅的旗子會是紅色的，中威脅的旗子是橘色，低威脅的旗子是黃色)
+<img src="https://i.imgur.com/Uv0BPEg.png" alt=""></p> <p>點開其中一個威脅，右邊視窗會跳出威脅等級、問題描述跟解法
+<img src="https://i.imgur.com/GyTm1Aa.png" alt=""></p> <p>以上是使用 GUI 介面來測試</p> <hr> <h2 id="docker-zap-測試"><a href="#docker-zap-測試" class="header-anchor">#</a> Docker ZAP 測試</h2> <p>此測法適用 cmd 測試，測試結果也比 GUI 模式詳細
+<a href="https://www.zaproxy.org/docs/docker/" target="_blank" rel="noopener noreferrer">ZAP Docker 官方文件<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="開啟虛擬機"><a href="#開啟虛擬機" class="header-anchor">#</a> 開啟虛擬機</h3> <p>因為要使用 docker 就要到 BIOS 開啟虛擬機
+BIOS 開啟方法，可參考<a href="https://ofeyhong.pixnet.net/blog/post/221133558" target="_blank" rel="noopener noreferrer">這篇<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+回到桌面開啟工作管理員/效能，確認虛擬機是否有開啟，如下圖
+<img src="https://i.imgur.com/xcDrs8C.png" alt=""></p> <hr> <h3 id="安裝環境"><a href="#安裝環境" class="header-anchor">#</a> 安裝環境</h3> <p><a href="https://www.docker.com/get-started" target="_blank" rel="noopener noreferrer">Docker 官網<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>下載 docker
+<img src="https://i.imgur.com/zOgNtC2.png" alt=""></p> <p>安裝
+<img src="https://i.imgur.com/Savy4T5.png" alt=""></p> <p>安裝好 docker 後，會要求重新開機</p> <p>接下來要用 cmd 測試，指令可參考 <a href="https://www.zaproxy.org/docs/docker/about/" target="_blank" rel="noopener noreferrer">ZAP Docker User Guide<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+有穩定版跟每周更新版，這邊示範穩定版
+開啟 cmd 安裝 docker zap: <code>docker pull owasp/zap2docker-stable</code></p> <p>等大概5~10分鐘，安裝好後如下圖
+<img src="https://i.imgur.com/yr8ncmq.png" alt=""></p> <p>這樣就可以開始測試了</p> <hr> <h3 id="掃描測試"><a href="#掃描測試" class="header-anchor">#</a> 掃描測試</h3> <p><a href="https://www.zaproxy.org/docs/docker/" target="_blank" rel="noopener noreferrer">ZAP Docker Documentation<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，由官網得知掃描分成 Baseline Scan、Full Scan 、API Scan ，以下示範 Baseline &amp; Full Scan</p> <h4 id="baseline-scan-基礎掃描"><a href="#baseline-scan-基礎掃描" class="header-anchor">#</a> Baseline Scan (基礎掃描)</h4> <p>如果只是單純測試的話可以參考官方給的範例:
+<code>docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.example.com</code></p> <p>由於專案關係要將測試結果做成 report 並存到指定位置，所以將指令改寫成如下:
+<code>docker run -v C:\Users\ken.tseng\Desktop\zap:/zap/wrk/ -t owasp/zap2docker-stable zap-baseline.py -t https://ken.msm.com/ -w report_md</code></p> <p>將指令輸入並打開 docker ，確認是否有在 run
+<img src="https://i.imgur.com/TRDOX7S.png" alt="">
+前面測試大概會花5~10分鐘左右，只要 docker 顯示 RUNNING 就代表有在 Run</p> <p>以下為測結果</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>PASS: Cookie No HttpOnly Flag [10010]
+PASS: Cookie Without Secure Flag [10011]
+PASS: Cross-Domain JavaScript Source File Inclusion [10017]
+PASS: Content-Type Header Missing [10019]
+PASS: X-Frame-Options Header [10020]
+PASS: Information Disclosure - Debug Error Messages [10023]
+PASS: Information Disclosure - Sensitive Information in URL [10024]
+PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
+PASS: HTTP Parameter Override [10026]
+PASS: Information Disclosure - Suspicious Comments [10027]
+PASS: Open Redirect [10028]
+PASS: Cookie Poisoning [10029]
+PASS: User Controllable Charset [10030]
+PASS: User Controllable HTML Element Attribute (Potential XSS) [10031]
+PASS: Viewstate [10032]
+PASS: Directory Browsing [10033]
+PASS: Heartbleed OpenSSL Vulnerability (Indicative) [10034]
+PASS: X-Backend-Server Header Information Leak [10039]
+PASS: Secure Pages Include Mixed Content [10040]
+PASS: HTTP to HTTPS Insecure Transition in Form Post [10041]
+PASS: HTTPS to HTTP Insecure Transition in Form Post [10042]
+PASS: User Controllable JavaScript Event (XSS) [10043]
+PASS: Big Redirect Detected (Potential Sensitive Information Leak) [10044]
+PASS: Retrieved from Cache [10050]
+PASS: X-ChromeLogger-Data (XCOLD) Header Information Leak [10052]
+PASS: Cookie Without SameSite Attribute [10054]
+PASS: X-Debug-Token Information Leak [10056]
+PASS: Username Hash Found [10057]
+PASS: X-AspNet-Version Response Header [10061]
+PASS: PII Disclosure [10062]
+PASS: Timestamp Disclosure [10096]
+PASS: Hash Disclosure [10097]
+PASS: Cross-Domain Misconfiguration [10098]
+PASS: Weak Authentication Method [10105]
+PASS: Reverse Tabnabbing [10108]
+PASS: Modern Web Application [10109]
+PASS: Absence of Anti-CSRF Tokens [10202]
+PASS: Private IP Disclosure [2]
+PASS: Session ID in URL Rewrite [3]
+PASS: Script Passive Scan Rules [50001]
+PASS: Insecure JSF ViewState [90001]
+PASS: Charset Mismatch [90011]
+PASS: Application Error Disclosure [90022]
+PASS: Loosely Scoped Cookie [90033]
+WARN-NEW: Incomplete or No Cache-control and Pragma HTTP Header Set [10015] x 1
+        https://ken.msm.com/ (200 OK)
+WARN-NEW: X-Content-Type-Options Header Missing [10021] x 2
+        https://ken.msm.com/ (200 OK)
+        https://ken.msm.com/favicon.ico (200 OK)
+WARN-NEW: Strict-Transport-Security Header Not Set [10035] x 4
+        https://ken.msm.com/ (200 OK)
+        https://ken.msm.com/robots.txt (404 Not Found)
+        https://ken.msm.com/sitemap.xml (404 Not Found)
+        https://ken.msm.com/favicon.ico (200 OK)
+WARN-NEW: Server Leaks Version Information via &quot;Server&quot; HTTP Response Header Field [10036] x 4
+        https://ken.msm.com/ (200 OK)
+        https://ken.msm.com/robots.txt (404 Not Found)
+        https://ken.msm.com/sitemap.xml (404 Not Found)
+        https://ken.msm.com/favicon.ico (200 OK)
+WARN-NEW: Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s) [10037] x 4
+        https://ken.msm.com/ (200 OK)
+        https://ken.msm.com/robots.txt (404 Not Found)
+        https://ken.msm.com/sitemap.xml (404 Not Found)
+        https://ken.msm.com/favicon.ico (200 OK)
+WARN-NEW: Content Security Policy (CSP) Header Not Set [10038] x 1
+        https://ken.msm.com/ (200 OK)
+WARN-NEW: CSP: Wildcard Directive [10055] x 2
+        https://ken.msm.com/robots.txt (404 Not Found)
+        https://ken.msm.com/sitemap.xml (404 Not Found)
+FAIL-NEW: 0     FAIL-INPROG: 0  WARN-NEW: 7     WARN-INPROG: 0  INFO: 0 IGNORE: 0PASS: 44
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br></div></div><p>測出結果有 7 項 WARN-NEW ，後面顯示有問題的項目提示，WARN-NEW 下面顯示的是有問題的 URL 有哪些，詳細的弱點描述跟解法資訊請看 report</p> <hr> <h3 id="full-scan-完整掃描"><a href="#full-scan-完整掃描" class="header-anchor">#</a> Full Scan (完整掃描)</h3> <p>此側法更為詳細
+指令的差別只在 baseline 改成 full-scan 而已
+指令:
+<code>docker run -v C:\Users\ken.tseng\Desktop\zap:/zap/wrk/ -t owasp/zap2docker-stable zap-full-scan.py -t https://ken.msm.com/ -w report-full_md</code></p> <p>測試時間大約5分鐘左右</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>PASS: Directory Browsing [0]
+
+PASS: Cookie No HttpOnly Flag [10010]
+
+PASS: Cookie Without Secure Flag [10011]
+
+PASS: Cross-Domain JavaScript Source File Inclusion [10017]
+
+PASS: Content-Type Header Missing [10019]
+
+PASS: X-Frame-Options Header [10020]
+
+PASS: Information Disclosure - Debug Error Messages [10023]
+
+PASS: Information Disclosure - Sensitive Information in URL [10024]
+
+PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
+
+PASS: HTTP Parameter Override [10026]
+
+PASS: Information Disclosure - Suspicious Comments [10027]
+
+PASS: Open Redirect [10028]
+
+PASS: Cookie Poisoning [10029]
+
+PASS: User Controllable Charset [10030]
+
+PASS: User Controllable HTML Element Attribute (Potential XSS) [10031]
+
+PASS: Viewstate [10032]
+
+PASS: Directory Browsing [10033]
+
+PASS: Heartbleed OpenSSL Vulnerability (Indicative) [10034]
+
+PASS: HTTP Server Response Header [10036]
+
+PASS: X-Backend-Server Header Information Leak [10039]
+
+PASS: Secure Pages Include Mixed Content [10040]
+
+PASS: HTTP to HTTPS Insecure Transition in Form Post [10041]
+
+PASS: HTTPS to HTTP Insecure Transition in Form Post [10042]
+
+PASS: User Controllable JavaScript Event (XSS) [10043]
+
+PASS: Big Redirect Detected (Potential Sensitive Information Leak) [10044]
+
+PASS: Source Code Disclosure - /WEB-INF folder [10045]
+
+PASS: HTTPS Content Available via HTTP [10047]
+
+PASS: Remote Code Execution - Shell Shock [10048]
+
+PASS: Retrieved from Cache [10050]
+
+PASS: Relative Path Confusion [10051]
+
+PASS: X-ChromeLogger-Data (XCOLD) Header Information Leak [10052]
+
+PASS: Apache Range Header DoS (CVE-2011-3192) [10053]
+
+PASS: Cookie Without SameSite Attribute [10054]
+
+PASS: X-Debug-Token Information Leak [10056]
+
+PASS: Username Hash Found [10057]
+
+PASS: GET for POST [10058]
+
+PASS: X-AspNet-Version Response Header [10061]
+
+PASS: PII Disclosure [10062]
+
+PASS: Backup File Disclosure [10095]
+
+PASS: Timestamp Disclosure [10096]
+
+PASS: Hash Disclosure [10097]
+
+PASS: Cross-Domain Misconfiguration [10098]
+
+PASS: User Agent Fuzzer [10104]
+
+PASS: Weak Authentication Method [10105]
+
+PASS: HTTP Only Site [10106]
+
+PASS: Httpoxy - Proxy Header Misuse [10107]
+
+PASS: Reverse Tabnabbing [10108]
+
+PASS: Modern Web Application [10109]
+
+PASS: Absence of Anti-CSRF Tokens [10202]
+
+PASS: Private IP Disclosure [2]
+
+PASS: Anti-CSRF Tokens Check [20012]
+
+PASS: HTTP Parameter Pollution [20014]
+
+PASS: Heartbleed OpenSSL Vulnerability [20015]
+
+PASS: Cross-Domain Misconfiguration [20016]
+
+PASS: Source Code Disclosure - CVE-2012-1823 [20017]
+
+PASS: Remote Code Execution - CVE-2012-1823 [20018]
+
+PASS: External Redirect [20019]
+
+PASS: Session ID in URL Rewrite [3]
+
+PASS: Buffer Overflow [30001]
+
+PASS: Format String Error [30002]
+
+PASS: Integer Overflow Error [30003]
+
+PASS: CRLF Injection [40003]
+
+PASS: Parameter Tampering [40008]
+
+PASS: Server Side Include [40009]
+
+PASS: Cross Site Scripting (Reflected) [40012]
+
+PASS: Session Fixation [40013]
+
+PASS: Cross Site Scripting (Persistent) [40014]
+
+PASS: Cross Site Scripting (Persistent) - Prime [40016]
+
+PASS: Cross Site Scripting (Persistent) - Spider [40017]
+
+PASS: SQL Injection [40018]
+
+PASS: SQL Injection - MySQL [40019]
+
+PASS: SQL Injection - Hypersonic SQL [40020]
+
+PASS: SQL Injection - Oracle [40021]
+
+PASS: SQL Injection - PostgreSQL [40022]
+
+PASS: Possible Username Enumeration [40023]
+
+PASS: SQL Injection - SQLite [40024]
+
+PASS: SQL Injection - MsSQL [40027]
+
+PASS: ELMAH Information Leak [40028]
+
+PASS: Trace.axd Information Leak [40029]
+
+PASS: .htaccess Information Leak [40032]
+
+PASS: .env Information Leak [40034]
+
+PASS: Hidden File Finder [40035]
+
+PASS: Source Code Disclosure - Git [41]
+
+PASS: Source Code Disclosure - SVN [42]
+
+PASS: Source Code Disclosure - File Inclusion [43]
+
+PASS: Script Active Scan Rules [50000]
+
+PASS: Script Passive Scan Rules [50001]
+
+PASS: Path Traversal [6]
+
+PASS: Remote File Inclusion [7]
+
+PASS: Insecure JSF ViewState [90001]
+
+PASS: Charset Mismatch [90011]
+
+PASS: XSLT Injection [90017]
+
+PASS: Server Side Code Injection [90019]
+
+PASS: Remote OS Command Injection [90020]
+
+PASS: XPath Injection [90021]
+
+PASS: Application Error Disclosure [90022]
+
+PASS: XML External Entity Attack [90023]
+
+PASS: Generic Padding Oracle [90024]
+
+PASS: Expression Language Injection [90025]
+
+PASS: Cookie Slack Detector [90027]
+
+PASS: Insecure HTTP Method [90028]
+
+PASS: Loosely Scoped Cookie [90033]
+
+WARN-NEW: Incomplete or No Cache-control and Pragma HTTP Header Set [10015] x 1
+
+https://ken.msm.com/ (200 OK)
+
+WARN-NEW: X-Content-Type-Options Header Missing [10021] x 2
+
+https://ken.msm.com/ (200 OK)
+
+https://ken.msm.com/favicon.ico (200 OK)
+
+WARN-NEW: Strict-Transport-Security Header Not Set [10035] x 4
+
+https://ken.msm.com/ (200 OK)
+
+https://ken.msm.com/robots.txt (404 Not Found)
+
+https://ken.msm.com/sitemap.xml (404 Not Found)
+
+https://ken.msm.com/favicon.ico (200 OK)
+
+WARN-NEW: Server Leaks Information via &quot;X-Powered-By&quot; HTTP Response Header Field(s) [10037] x 4
+
+https://ken.msm.com/ (200 OK)
+
+https://ken.msm.com/robots.txt (404 Not Found)
+
+https://ken.msm.com/sitemap.xml (404 Not Found)
+
+https://ken.msm.com/favicon.ico (200 OK)
+
+WARN-NEW: Content Security Policy (CSP) Header Not Set [10038] x 1
+
+https://ken.msm.com/ (200 OK)
+
+WARN-NEW: CSP: Wildcard Directive [10055] x 2
+
+https://ken.msm.com/robots.txt (404 Not Found)
+
+https://ken.msm.com/sitemap.xml (404 Not Found)
+
+WARN-NEW: Proxy Disclosure [40025] x 4
+
+https://ken.msm.com/ (200 OK)
+
+https://ken.msm.com/favicon.ico (200 OK)
+
+https://ken.msm.com/robots.txt (404 Not Found)
+
+https://ken.msm.com/sitemap.xml (404 Not Found)
+
+WARN-NEW: Cloud Metadata Potentially Exposed [90034] x 1
+
+https://ken.msm.com/latest/meta-data/ (200 OK)
+
+FAIL-NEW: 0 FAIL-INPROG: 0 WARN-NEW: 8 WARN-INPROG: 0 INFO: 0 IGNORE: 0 PASS: 102
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br><span class="line-number">233</span><br><span class="line-number">234</span><br><span class="line-number">235</span><br><span class="line-number">236</span><br><span class="line-number">237</span><br><span class="line-number">238</span><br><span class="line-number">239</span><br><span class="line-number">240</span><br><span class="line-number">241</span><br><span class="line-number">242</span><br><span class="line-number">243</span><br><span class="line-number">244</span><br><span class="line-number">245</span><br><span class="line-number">246</span><br><span class="line-number">247</span><br><span class="line-number">248</span><br><span class="line-number">249</span><br><span class="line-number">250</span><br><span class="line-number">251</span><br><span class="line-number">252</span><br><span class="line-number">253</span><br><span class="line-number">254</span><br><span class="line-number">255</span><br><span class="line-number">256</span><br><span class="line-number">257</span><br><span class="line-number">258</span><br><span class="line-number">259</span><br></div></div><p>然後再依照 WARN-NEW 顯示的提示進行修正</p> <p>以上就是 Docker ZAP 掃描</p> <hr> <h2 id="參考資料"><a href="#參考資料" class="header-anchor">#</a> 參考資料</h2> <p><a href="https://ofeyhong.pixnet.net/blog/post/221133558" target="_blank" rel="noopener noreferrer">歐飛先生<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://www.zaproxy.org/docs/" target="_blank" rel="noopener noreferrer">Documentation<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://ephrain.net/pentest-%E7%94%A8-owasp-zap-%E5%81%9A%E6%BB%B2%E9%80%8F%E6%B8%AC%E8%A9%A6%EF%BC%8C%E6%89%BE%E5%B0%8B%E7%B6%B2%E7%AB%99%E5%8F%AF%E8%83%BD%E7%9A%84%E5%BC%B1%E9%BB%9E/" target="_blank" rel="noopener noreferrer">用 OWASP ZAP 做滲透測試，找尋網站可能的弱點<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://ephrain.net/pentest-%E7%94%A8-owasp-zap-%E5%81%9A%E6%BB%B2%E9%80%8F%E6%B8%AC%E8%A9%A6%EF%BC%8C%E6%89%BE%E5%B0%8B%E7%B6%B2%E7%AB%99%E5%8F%AF%E8%83%BD%E7%9A%84%E5%BC%B1%E9%BB%9E/" target="_blank" rel="noopener noreferrer">EPH 的程式日記<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/codeBlog/Other/CommandLine.html" class="prev">
+        Command Line 常用指令有哪些
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/codeBlog/assets/js/app.6eda6764.js" defer></script><script src="/codeBlog/assets/js/2.75f0d916.js" defer></script><script src="/codeBlog/assets/js/12.3867c048.js" defer></script>
+  </body>
+</html>
